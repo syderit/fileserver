@@ -6,15 +6,18 @@
 </head>
 <body>
 <h2>Autenticación</h2>
-<form action="/my-handling-form-page" method="post">
+<form action="CheckUser" method="post">
     <div>
-        <label for="id_user">Usuario:</label>
-        <input type="text" id="id_user" />
+        <label for="id_username">Usuario:</label>
+        <input type="text" id="id_username" name="username" />
     </div>
+    <br/>
     <div>
         <label for="id_password">Contraseña:</label>
-        <input type="password" id="id_password" />
+        <input type="password" id="id_password" name="password" />
     </div>
+    <br/>
+    <input type="submit" value="check user"/>
 </form>
 </body>
 </html>

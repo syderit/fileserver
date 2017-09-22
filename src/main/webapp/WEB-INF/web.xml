@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>CheckUser</servlet-name>
+  	<display-name>CheckUser</display-name>
+  	<description>Simple Servlet to check if a user exists</description>
+  	<servlet-class>com.syder.itservices.filesmanager.servlet.CheckUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CheckUser</servlet-name>
+  	<url-pattern>/CheckUser</url-pattern>
+  </servlet-mapping>
 </web-app>
