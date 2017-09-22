@@ -23,6 +23,6 @@
     
   </dependencies>
   <build>
-    <finalName>filesmanager</finalName>
+    <finalName>ROOT</finalName>
   </build>
 </project>
