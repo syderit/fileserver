@@ -15,24 +15,35 @@ public class Utils {
 	    return result.toString();
 	  }
 	
-	public static String getSessionInfo(HttpServletRequest request) {
-		StringBuilder sb = new StringBuilder("\nSESSION INFO:\n\n");
+	public static String getRequestInfo(HttpServletRequest request) {
+		StringBuilder sb = new StringBuilder("\nREQUEST INFO:\n\n");
 		
-		Enumeration<String> enames = request.getHeaderNames();
+		Enumeration<String> enames;
+		String name;
+		String value;
+		
+		enames = request.getHeaderNames();
 		while (enames.hasMoreElements()) {
-			String name = (String) enames.nextElement();
-			String value = request.getHeader(name);
+			name = (String) enames.nextElement();
+			value = request.getHeader(name);
 			sb.append("\theader: ").append(name).append("=").append(value).append("\n");
+		}
+		
+		enames = request.getParameterNames();
+		while (enames.hasMoreElements()) {
+			name = (String) enames.nextElement();
+			value = request.getParameter(name) == null ? "<null>" : request.getParameter(name).toString();
+			sb.append("\tparam: ").append(name).append("=").append(value).append("\n");
 		}
 		
 		enames = request.getSession().getAttributeNames();
 		while (enames.hasMoreElements()) {
-			String name = (String) enames.nextElement();
-			String value = request.getSession().getAttribute(name) == null ? "<null>" : request.getSession().getAttribute(name).toString();
+			name = (String) enames.nextElement();
+			value = request.getSession().getAttribute(name) == null ? "<null>" : request.getSession().getAttribute(name).toString();
 			sb.append("\tsession attr: ").append(name).append("=").append(value).append("\n");
 		}
 		
-		sb.append("\nSESSION INFO END");
+		sb.append("\nREQUEST INFO END");
 		return sb.toString();
 	}
 }

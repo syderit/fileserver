@@ -38,7 +38,7 @@ public class CheckUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("CheckUser BEGIN");
-		logger.debug(Utils.getSessionInfo(request));
+		logger.debug(Utils.getRequestInfo(request));
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
