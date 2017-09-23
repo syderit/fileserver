@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.apache.log4j.Logger;
+
+import com.syder.itservices.filesmanager.utils.PropertiesManager;
 import com.syder.itservices.filesmanager.utils.Utils;
 
 /**
@@ -12,16 +15,17 @@ import com.syder.itservices.filesmanager.utils.Utils;
  *
  */
 public class DBAccess {
-	private static String CONNECTION_STRING_DEV = "jdbc:mysql://localhost/fileserver?user=juan&password=23458923";
-	private static String CONNECTION_STRING_PROD = "mysql://mysql:3306/syderdb?user=syderdbuser&password=qwe123123";
-	private static String CONNECTION_STRING = CONNECTION_STRING_PROD;
+	final static Logger logger = Logger.getLogger(DBAccess.class);
+//	private static String CONNECTION_STRING_DEV = "jdbc:mysql://localhost/fileserver?user=juan&password=23458923";
+//	private static String CONNECTION_STRING_PROD = "mysql://mysql:3306/syderdb?user=syderdbuser&password=qwe123123";
+	private static String CONNECTION_STRING = "jdbc:mysql://" + PropertiesManager.getProperty("db.server") + "/" + PropertiesManager.getProperty("db.schema") + "?user=" + PropertiesManager.getProperty("db.user") + "&password=" + PropertiesManager.getProperty("db.pass");
 	
     public static boolean checkUser(String username, String password)  throws Exception {
     	Connection connection = null;
     	PreparedStatement preparedStatement = null;
     	ResultSet resultSet = null;
         try {
-        	System.out.println("checkUser username=" + username + ", password=" + password + " BEGIN");
+        	logger.info("checkUser username=" + username + ", password=" + password + " BEGIN");
         	Class.forName("com.mysql.jdbc.Driver");
         	connection = DriverManager.getConnection(CONNECTION_STRING);
         	
@@ -33,14 +37,14 @@ public class DBAccess {
             
             resultSet = preparedStatement.executeQuery();
             boolean result = resultSet.next();
-            System.out.println("result=" + result);
+            logger.info("result=" + result);
             if (result) {
             	int user_id = resultSet.getInt("id");
-            	System.out.println("user user_id=" + user_id);
+            	logger.debug("user user_id=" + user_id);
             }
             return result;
         } catch (Exception e) {
-        	System.err.println("Se ha producido una excepcion: " + Utils.getStackTrace(e));
+        	logger.error("Se ha producido una excepcion: " + Utils.getStackTrace(e));
         	throw e;
         } finally {
         	try {
@@ -54,7 +58,7 @@ public class DBAccess {
                     connection.close();
                 }
             } catch (Exception e) {
-            	System.err.println("Se ha producido una excepcion: " + Utils.getStackTrace(e));
+            	logger.error("Se ha producido una excepcion: " + Utils.getStackTrace(e));
             }
         }
     }

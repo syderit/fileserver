@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.syder</groupId>
+  <groupId>com.syder.itservices</groupId>
   <artifactId>filesmanager</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
@@ -32,6 +32,36 @@
 	</dependency>
   </dependencies>
   <build>
-    <finalName>ROOT</finalName>
+  	<resources>
+		<resource>
+			<directory>src/main/resources</directory>
+			<filtering>true</filtering>
+		</resource>
+	</resources>
+    <finalName>fileserver</finalName>
   </build>
+  <profiles>
+  	<profile>
+        <id>dev</id>
+        <activation>
+        	<activeByDefault>true</activeByDefault>
+        </activation>
+        <properties>
+            <filters.db.server>localhost</filters.db.server>
+            <filters.db.schema>fileserver</filters.db.schema>
+            <filters.db.user>juan</filters.db.user>
+        </properties>
+    </profile>
+  	<profile>
+        <id>prod</id>
+        <activation>
+        	<activeByDefault>false</activeByDefault>
+        </activation>
+        <properties>
+            <filters.db.server>localhost</filters.db.server>
+            <filters.db.schema>syder_fileserver</filters.db.schema>
+            <filters.db.user>syder</filters.db.user>
+        </properties>
+    </profile>
+  </profiles>
 </project>
