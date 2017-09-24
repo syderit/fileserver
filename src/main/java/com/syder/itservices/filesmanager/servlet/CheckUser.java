@@ -37,7 +37,7 @@ public class CheckUser extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		logger.info("CheckUser BEGIN");
+		logger.info("BEGIN");
 		logger.debug(Utils.getRequestInfo(request));
 		
 		String username = request.getParameter("username");
@@ -56,7 +56,7 @@ public class CheckUser extends HttpServlet {
 			logger.error("Se ha producido una excepcion: " + Utils.getStackTrace(e));
 		}
 		
-		logger.info("CheckUser END");
+		logger.info("END");
 	}
 
 }

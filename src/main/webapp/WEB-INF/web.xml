@@ -10,8 +10,18 @@
   	<description>Simple Servlet to check if a user exists</description>
   	<servlet-class>com.syder.itservices.filesmanager.servlet.CheckUser</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>UploadFile</servlet-name>
+  	<display-name>UploadFile</display-name>
+  	<description>Upload new files and get a uid</description>
+  	<servlet-class>com.syder.itservices.filesmanager.servlet.UploadFile</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CheckUser</servlet-name>
   	<url-pattern>/CheckUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UploadFile</servlet-name>
+  	<url-pattern>/UploadFile</url-pattern>
   </servlet-mapping>
 </web-app>
