@@ -16,7 +16,7 @@ public class Utils {
 	  }
 	
 	public static String getRequestInfo(HttpServletRequest request) {
-		StringBuilder sb = new StringBuilder("\nREQUEST INFO:\n\n");
+		StringBuilder sb = new StringBuilder("\nREQUEST INFO:\n");
 		
 		Enumeration<String> enames;
 		String name;
@@ -43,7 +43,7 @@ public class Utils {
 			sb.append("\tsession attr: ").append(name).append("=").append(value).append("\n");
 		}
 		
-		sb.append("\nREQUEST INFO END");
+		sb.append("REQUEST INFO END");
 		return sb.toString();
 	}
 }

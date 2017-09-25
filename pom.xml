@@ -50,6 +50,7 @@
             <filters.db.server>localhost</filters.db.server>
             <filters.db.schema>fileserver</filters.db.schema>
             <filters.db.user>juan</filters.db.user>
+            <filters.db.pass>23458923</filters.db.pass>
         </properties>
     </profile>
   	<profile>
@@ -64,4 +65,8 @@
         </properties>
     </profile>
   </profiles>
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
 </project>

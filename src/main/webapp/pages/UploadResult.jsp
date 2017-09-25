@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Check User Service</title>
+<title>Upload file result</title>
 </head>
 <body>
 <h3>Result:</h3>

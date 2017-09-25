@@ -3,6 +3,7 @@ package com.syder.itservices.filesmanager.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import com.syder.itservices.filesmanager.utils.Utils;
 /**
  * Servlet implementation class CheckUser
  */
+@WebServlet(name = "CheckUser", urlPatterns = {"/CheckUser"})
 public class CheckUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = Logger.getLogger(CheckUser.class);
@@ -46,10 +48,10 @@ public class CheckUser extends HttpServlet {
 		logger.info("param username=" + username);
 		logger.info("param password=" + password);
 		try {
-			boolean user_exists = DBAccess.checkUser(username, password);
-			logger.info("user_exists=" + user_exists);
+			int idUser = DBAccess.checkUser(username, password);
+			logger.info("user_exists=" + idUser);
 			
-			String result = user_exists ? "1" : "0";
+			String result = (idUser != -1) ? "1" : "0";
 			request.setAttribute("result", result);
 			request.getRequestDispatcher("pages/checkUserResult.jsp").forward(request, response);
 		} catch (Exception e) {

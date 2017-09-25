@@ -3,21 +3,30 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Servicio de Intercambio de Documentos</title>
+	<script type="text/javascript">
+		function submitForm() {
+			if (document.forms.uploadForm.file.files.length != 1) {
+				alert("Seleccione un fichero para subir");
+			} else {
+				var originalfilename = document.forms.uploadForm.file.files[0].name;
+				document.forms.uploadForm.originalfilename.value = originalfilename;
+				document.forms.uploadForm.submit();
+			}
+		}
+	</script>
 </head>
 <body>
-<h2>Autenticación</h2>
-<form action="CheckUser" method="post">
-    <div>
-        <label for="id_username">Usuario:</label>
-        <input type="text" id="id_username" name="username" />
-    </div>
+<h2>Subida ficheros</h2>
+<form action="UploadFile" enctype="multipart/form-data" method="post" name="uploadForm">
+	Syder Password:
+    <input type="text" name="password"/>
+    <p>
+	Fichero:<br>
+	<input name="file" type="file" name="datafile" size="40"/>
+	</p>
     <br/>
-    <div>
-        <label for="id_password">Contraseña:</label>
-        <input type="password" id="id_password" name="password" />
-    </div>
-    <br/>
-    <input type="submit" value="check user"/>
+	<input type="hidden" name="originalfilename" />
+    <input onclick="submitForm()" type="button" value="Upload File"/>
 </form>
 </body>
 </html>
