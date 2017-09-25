@@ -17,6 +17,9 @@
 </head>
 <body>
 <h2>Subida ficheros</h2>
+<p>
+<span id="error_id" style="color:red"><%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %></span>
+</p>
 <form action="UploadFile" enctype="multipart/form-data" method="post" name="uploadForm">
 	Syder Password:
     <input type="text" name="password"/>

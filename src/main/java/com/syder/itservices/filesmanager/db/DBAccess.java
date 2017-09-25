@@ -75,7 +75,7 @@ public class DBAccess {
         	Class.forName("com.mysql.jdbc.Driver");
         	connection = DriverManager.getConnection(CONNECTION_STRING);
         	
-            String statementStr = "INSERT INTO `fileserver`.`files` (`originalname`, `uid`, `upload_date`, `location`) VALUES (?, ?, now(), ?);";
+            String statementStr = "INSERT INTO `files` (`originalname`, `uid`, `upload_date`, `location`) VALUES (?, ?, now(), ?);";
             insertStatement = connection.prepareStatement(statementStr, Statement.RETURN_GENERATED_KEYS);
             
             insertStatement.setString(1, originalname);
@@ -172,7 +172,7 @@ public class DBAccess {
         	Class.forName("com.mysql.jdbc.Driver");
         	connection = DriverManager.getConnection(CONNECTION_STRING);
         	
-            String statementStr = "INSERT INTO `fileserver`.`users_files` (`id_user`, `id_file`, `access_date`) VALUES (?, ?, now());";
+            String statementStr = "INSERT INTO `users_files` (`id_user`, `id_file`, `access_date`) VALUES (?, ?, now());";
             insertStatement = connection.prepareStatement(statementStr);
             
             insertStatement.setInt(1, idUser);

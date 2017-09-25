@@ -47,6 +47,7 @@ public class GetFile extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("BEGIN");
 		logger.debug(Utils.getRequestInfo(request));
+		ResourceBundle messages = ResourceBundle.getBundle("MessagesBundle", new Locale("es", "ES"));
 		
 		try {
 			String id = request.getParameter("id");
@@ -56,8 +57,6 @@ public class GetFile extends HttpServlet {
 			logger.info("requested file id=" + id);
 			logger.info("username=" + username);
 			logger.info("password=" + password);
-			
-			ResourceBundle messages = ResourceBundle.getBundle("MessagesBundle", new Locale("es", "ES"));
 			
 			int idUser = DBAccess.checkUser(username, password);
 			if (idUser != -1) {
@@ -85,17 +84,21 @@ public class GetFile extends HttpServlet {
 					in.close();
 					out.flush();
 				} else {
+					logger.warn("wrong id file: " + id);
 					request.setAttribute("error", messages.getString("getfile.error.file"));
-					request.setAttribute("id", id); // TODO se puede poner en la URL?
+					request.setAttribute("id", id);
 					request.getRequestDispatcher("index.jsp").forward(request, response);
 				}
 			} else {
+				logger.info("wrong user credentials: " + username + "/" + password);
 				request.setAttribute("error", messages.getString("getfile.error.user"));
 				request.setAttribute("id", id);
 				request.getRequestDispatcher("getFile.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
 			logger.error("Se ha producido una excepcion: " + Utils.getStackTrace(e));
+			request.setAttribute("error", messages.getString("global.error"));
+			request.getRequestDispatcher("getFile.jsp").forward(request, response);
 		}
 		
 		logger.info("END");
