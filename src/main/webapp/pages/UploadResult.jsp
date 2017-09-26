@@ -28,7 +28,7 @@
 				</div>
 				<div class="panel-body"><%= request.getAttribute("newfileurl") %><br/></div>
 			</div>
-			<input type="button" class="btn btn-primary" value="Volver" onclick="document.location='../index.jsp'">
+			<input type="button" class="btn btn-primary" value="Volver" onclick="document.location='index.jsp'">
 		</div>
 	</div>
 	<div class="container-fluid">

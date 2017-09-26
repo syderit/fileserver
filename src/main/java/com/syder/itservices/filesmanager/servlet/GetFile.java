@@ -66,8 +66,8 @@ public class GetFile extends HttpServlet {
 					String mimeType = URLConnection.guessContentTypeFromName(fileDB.getOriginalname());
 					logger.info("mimeType=" + mimeType);
 					if (mimeType == null) {
-						logger.info("manually set mime type to application/xml");
-						mimeType = "application/xml";
+						logger.info("manually set mime type to application/pdf");
+						mimeType = "application/pdf";
 					}
 					response.setContentType(mimeType);
 					response.setHeader("Content-disposition","attachment; filename=" + fileDB.getOriginalname());
