@@ -59,7 +59,7 @@
 						<br/>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-							<input id="id_password" type="password" class="form-control" name="password" placeholder="Password" maxlength="25">
+							<input id="id_password" type="password" class="form-control" name="password" placeholder="password" maxlength="50">
 						</div>
 						<br/>
 						<div class="form-group">
@@ -76,7 +76,7 @@
 	</div>
 	<div class="container-fluid">
 		<footer class="footer">
-			<p class="small" style="margin:10px">Para cualquier problema pongase en contacto con: <a href="mailto:support@servicios-syder.es" target="_top"><span class="glyphicon glyphicon-envelope"></span> support@servicios-syder.es</a>.</p>
+			<p class="small" style="margin:10px">Para cualquier problema pongase en contacto con: <a href="mailto:soporte@servicios-syder.es" target="_top"><span class="glyphicon glyphicon-envelope"></span> soporte@servicios-syder.es</a>.</p>
 			<p class="small" style="margin:10px">2017 &copy; Todos los derechos reservados.</p>
         </footer>
 	</div>
