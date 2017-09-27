@@ -69,20 +69,28 @@ public class GetFile extends HttpServlet {
 						logger.info("manually set mime type to application/pdf");
 						mimeType = "application/pdf";
 					}
-					response.setContentType(mimeType);
-					response.setHeader("Content-disposition","attachment; filename=" + fileDB.getOriginalname());
 					
 					File file = new File(fileDB.getLocation());
-					
-					OutputStream out = response.getOutputStream();
-					FileInputStream in = new FileInputStream(file);
-					byte[] buffer = new byte[4096];
-					int length;
-					while ((length = in.read(buffer)) > 0){
-						out.write(buffer, 0, length);
+					if (file.exists()) {
+						logger.debug("file exists in ftp server");
+						OutputStream out = response.getOutputStream();
+						FileInputStream in = new FileInputStream(file);
+						byte[] buffer = new byte[4096];
+						int length;
+						while ((length = in.read(buffer)) > 0){
+							out.write(buffer, 0, length);
+						}
+						logger.debug("file read");
+						response.setContentType(mimeType);
+						response.setHeader("Content-disposition","attachment; filename=" + fileDB.getOriginalname());
+						
+						in.close();
+						out.flush();
+					} else {
+						logger.error("El fichero accedido ya no existe en el servidor FTP");
+						request.setAttribute("error", messages.getString("getfile.error.ftpfile"));
+						request.getRequestDispatcher("getFile.jsp").forward(request, response);
 					}
-					in.close();
-					out.flush();
 				} else {
 					logger.warn("wrong id file: " + id);
 					request.setAttribute("error", messages.getString("getfile.error.file"));
