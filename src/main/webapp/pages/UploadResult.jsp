@@ -26,7 +26,10 @@
 					<small>Conserve la URL del fichero para poder descargarlo más adelante</small>
 					</h4>
 				</div>
-				<div class="panel-body"><%= request.getAttribute("newfileurl") %><br/></div>
+				<div class="panel-body">
+					<%= request.getAttribute("newfileurl") %><br/>
+					<b>(URL Nuevo acuerdo OCSUM)</b> <%= request.getAttribute("newnewfileurl") %><br/>
+				</div>
 			</div>
 			<input type="button" class="btn btn-primary" value="Volver" onclick="document.location='index.jsp'">
 		</div>

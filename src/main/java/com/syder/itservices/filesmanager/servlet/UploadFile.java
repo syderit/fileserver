@@ -118,6 +118,7 @@ public class UploadFile extends HttpServlet {
 			    
 			    // return result
 			    request.setAttribute("newfileurl", "https://www.servicios-syder.es/fileserver/getFile.jsp?id=" + uid);
+			    request.setAttribute("newnewfileurl", "https://www.servicios-syder.es/fileserver/GetFileBasicAuth/" + uid);
 				request.getRequestDispatcher("pages/UploadResult.jsp").forward(request, response);
 			} else {
 				logger.info("wrong password!");
