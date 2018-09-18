@@ -37,7 +37,14 @@ public class GetFileBasicAuth extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Only POST is supported for this application");
+		// response.getWriter().append("Only POST is supported for this application");
+		// como parecen no saber utilizar POST, les permitimos introducir usuario y contraseña.
+		// para ello, lo más sencillo por el momento es redirigirles a la página antigua de descarga de ficheros:
+		logger.info("BEGIN");
+		logger.info("Peticion GET: redirigimos a la pagina de descarga por formulario");
+		String id = request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/")+1);
+		logger.info("id=" + id);
+		response.sendRedirect("https://www.servicios-syder.es/fileserver/getFile.jsp?id=" + id);
 	}
 
 	/**
